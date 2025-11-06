@@ -1,0 +1,29 @@
+name: "gaia"
+backend: "python"
+max_batch_size: 1  # Simplifica tudo: 1 request = 1 execução
+
+# Define a entrada: um prompt de texto
+input [
+  {
+    name: "PROMPT"
+    data_type: TYPE_STRING
+    dims: [ 1 ]
+  }
+]
+
+# Define a saída: o texto gerado
+output [
+  {
+    name: "GENERATED_TEXT"
+    data_type: TYPE_STRING
+    dims: [ 1 ]
+  }
+]
+
+# Informa ao Triton para rodar uma instância do modelo na GPU
+instance_group [
+  {
+    kind: KIND_GPU
+    count: 1
+  }
+]
