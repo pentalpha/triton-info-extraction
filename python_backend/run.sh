@@ -1,17 +1,6 @@
-# Make sure your my_model_repo is in your current directory
-export MODEL_REPO_PATH=$(pwd)/model_repository
+export TRITON_SERVER_URL=0.0.0.0:8000
 
-# Use the container tag that includes the vLLM backend
-#docker run --gpus all --rm -it \
-#  -p 8000:8000 \
-#  -p 8001:8001 \
-#  -p 8002:8002 \
-#  -v $MODEL_REPO_PATH:/models \
-#  nvcr.io/nvidia/tritonserver:24.08-vllm-python-py3 \
-#  tritonserver --model-repository=/models
-#
-
-curl -X POST localhost:8000/v2/models/gaia/infer -d \
+curl -X POST $TRITON_SERVER_URL/v2/models/text_llm/infer -d \
 '{
   "inputs": [
     {
@@ -21,4 +10,13 @@ curl -X POST localhost:8000/v2/models/gaia/infer -d \
       "data": ["O que é a computação em nuvem?"]
     }
   ]
+}'
+
+curl -X POST $TRITON_SERVER_URL/v2/models/text_llm/generate -d \
+'{
+  "text_input": "Quem é Pitágoras de Azevedo Alves Sobrinho?",
+  "parameters": {
+    "max_tokens": 512,
+    "stream": false
+  }
 }'

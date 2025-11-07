@@ -1,4 +1,4 @@
-name: "gaia"
+name: "text_llm"
 backend: "python"
 max_batch_size: 1  # Simplifica tudo: 1 request = 1 execução
 
