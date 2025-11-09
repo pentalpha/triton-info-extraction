@@ -98,12 +98,14 @@ class TritonPythonModel:
                 # 2. EXTRAIR OS INPUTS DO TRITON
                 # Extrai o PROMPT (texto)
                 input_text_tensor = pb_utils.get_input_tensor_by_name(request, "PROMPT")
-                # Decodifica o tensor de string para uma string python
-                transcript = input_text_tensor.as_numpy()[0].decode('utf-8')
+                # Acessa o valor do array NumPy e decodifica.
+                # Para shape [1, 1], o valor está em [0, 0].
+                transcript = input_text_tensor.as_numpy()[0, 0].decode('utf-8')
 
                 # Extrai a LABEL_LIST (string JSON)
                 labels_tensor = pb_utils.get_input_tensor_by_name(request, "LABEL_LIST")
-                labels_str = labels_tensor.as_numpy()[0].decode('utf-8')
+                # Acessa o valor do array NumPy e decodifica.
+                labels_str = labels_tensor.as_numpy()[0, 0].decode('utf-8')
                 # Converte a string JSON em uma lista Python
                 labels_list = labels_str.split(',')
                 labels_list = [label.strip() for label in labels_list if label.strip() != '']
