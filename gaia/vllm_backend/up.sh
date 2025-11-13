@@ -7,7 +7,7 @@ export VLLM_CACHE_PATH=$(pwd)/vllm_cache
 mkdir -p $HF_CACHE_PATH
 mkdir -p $VLLM_CACHE_PATH
 
-sudo docker build -t triton-info . && sudo docker run --gpus all --rm -it \
+sudo docker build -t triton-info . && sudo docker run --gpus all --rm \
   -p 8000:8000 \
   -p 8001:8001 \
   -p 8002:8002 \
