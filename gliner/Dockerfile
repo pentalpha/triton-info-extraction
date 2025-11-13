@@ -29,4 +29,4 @@ EXPOSE 8002
 # Métricas
 
 # Comando padrão para iniciar o servidor Triton
-CMD [ "tritonserver", "--model-repository=/models" ]
+CMD ["tritonserver", "--model-repository=/models"]

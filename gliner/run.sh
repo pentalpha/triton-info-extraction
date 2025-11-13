@@ -15,13 +15,13 @@ time curl -X POST $TRITON_SERVER_URL/v2/models/gliner_x_large/infer -d \
       "name": "PROMPT",
       "shape": [1, 1],
       "datatype": "BYTES",
-      "data": ["$transcript1"]
+      "data": ["Ela está inconsciente. Meu nome é Maria Oliveira. Meu telefone é 99999-8888, moro na cidade de São Paulo. "]
     },
     {
       "name": "LABEL_LIST",
       "shape": [1, 1],
       "datatype": "BYTES",
-      "data": ["'"$LABEL_STRING"'"]
+      "data": ["rua_ou_logradouro, rua, bairro, municipio, cidade, ponto_de_referencia, nome_do_solicitante, pessoa, numero, street_number, number, complemento, endereço_complemento"]
     }
   ]
 }'
