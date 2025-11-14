@@ -1,4 +1,4 @@
-name: "text_llm3"
+name: "gaia"
 backend: "vllm"
 max_batch_size: 0
 
